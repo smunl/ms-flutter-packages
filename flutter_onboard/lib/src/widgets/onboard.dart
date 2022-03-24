@@ -40,6 +40,15 @@ class OnBoard extends HookConsumerWidget {
   /// Next Button Widget
   final Widget? nextButton;
 
+  // Skip Button Title String
+  final String skipButtonTitle;
+
+  // Next Button Title String
+  final String nextButtonTitle;
+
+  // Done Button Title String
+  final String doneButtonTitle;
+
   /// Animation [Duration] for transition from one page to another
   /// @Default [Duration(milliseconds:250)]
   final Duration duration;
@@ -63,6 +72,9 @@ class OnBoard extends HookConsumerWidget {
     this.imageHeight,
     this.skipButton,
     this.nextButton,
+    this.skipButtonTitle = 'Skip',
+    this.nextButtonTitle = 'Next',
+    this.doneButtonTitle = 'Done',
     this.duration = const Duration(milliseconds: 250),
     this.curve = Curves.easeInOut,
     this.pageIndicatorStyle = const PageIndicatorStyle(
@@ -87,6 +99,9 @@ class OnBoard extends HookConsumerWidget {
         imageHeight: imageHeight,
         skipButton: skipButton,
         nextButton: nextButton,
+        skipButtonTitle: skipButtonTitle,
+        nextButtonTitle: nextButtonTitle,
+        doneButtonTitle: doneButtonTitle,
         duration: duration,
         curve: curve,
         pageIndicatorStyle: pageIndicatorStyle,
@@ -128,6 +143,15 @@ class _OnBoard extends HookConsumerWidget {
   /// Next Button Widget
   final Widget? nextButton;
 
+  // Skip Button Title String
+  final String skipButtonTitle;
+
+  // Next Button Title String
+  final String nextButtonTitle;
+
+  // Done Button Title String
+  final String doneButtonTitle;
+
   /// Animation [Duration] for transition from one page to another
   /// @Default [Duration(milliseconds:250)]
   final Duration duration;
@@ -151,6 +175,9 @@ class _OnBoard extends HookConsumerWidget {
     this.imageHeight,
     this.skipButton,
     this.nextButton,
+    this.skipButtonTitle = 'Skip',
+    this.nextButtonTitle = 'Next',
+    this.doneButtonTitle = 'Done',
     this.duration = const Duration(milliseconds: 250),
     this.curve = Curves.easeInOut,
     this.pageIndicatorStyle = const PageIndicatorStyle(
@@ -181,8 +208,8 @@ class _OnBoard extends HookConsumerWidget {
             child: skipButton ??
                 TextButton(
                   onPressed: () => _onSkipPressed(onSkip),
-                  child: const Text(
-                    "Skip",
+                  child: Text(
+                    skipButtonTitle,
                     style: TextStyle(color: Colors.blueAccent),
                   ),
                 ),
@@ -262,7 +289,9 @@ class _OnBoard extends HookConsumerWidget {
                       ),
                       onPressed: () => _onNextTap(onBoardState),
                       child: Text(
-                        onBoardState.isLastPage ? "Done" : "Next",
+                        onBoardState.isLastPage
+                            ? doneButtonTitle
+                            : nextButtonTitle,
                         style: const TextStyle(color: Colors.white),
                       ),
                     ),
